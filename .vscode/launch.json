@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/index.js",
+            "program": "${workspaceFolder}/src/index.js",
             "runtimeExecutable": "/home/dennis/.nvm/versions/node/v24.13.0/bin/node",
             "outputCapture": "std"
 
