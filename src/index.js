@@ -1,4 +1,9 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer'); 
+/*
+in fact, we use rebrowser-puppeteer, a patched version of puppeteer, which includes fixes for some anti-bot detections. 
+Its full in-place replacement for puppeteer, so we can simply require it as puppeteer. 
+puppeteer-extra-plugin-stealth is abandoned and dont work anymore
+*/
 const UserAgent = require('user-agents');
 const proxyChain = require('proxy-chain');
 const targetUrl = "https://www.booking.com/searchresults.html?ss=Stockholm%2C+Sweden&efdco=1&lang=en-us&checkin=2026-02-18&checkout=2026-02-28&group_adults=2&no_rooms=1&group_children=0";
@@ -53,7 +58,7 @@ var browser, page, browserContext;
     });
 
     console.log(hotels);
-
+    await closeBrowser();
     process.exit();
 
 })();
@@ -133,6 +138,26 @@ async function dbConnect() {
         database: config.db_name
     });
     return connection;
+}
+
+/**
+ * Closes the browser, browser context, and anonymized proxy to free up resources.
+ */
+async function closeBrowser() {
+    try {
+        if (anonymizedProxyUrl) {
+            await proxyChain.closeAnonymizedProxy(anonymizedProxyUrl);
+        }
+        if (browserContext) {
+            await browserContext.close();
+        }
+        if (browser) {
+            await browser.close();
+        }
+        console.log("Browser and resources cleaned up.");
+    } catch (err) {
+        console.error("Error closing browser:", err);
+    }
 }
 
 /**
