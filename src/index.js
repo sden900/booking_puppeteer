@@ -2,7 +2,10 @@ const puppeteer = require('puppeteer');
 const UserAgent = require('user-agents');
 const proxyChain = require('proxy-chain');
 const targetUrl = "https://www.booking.com/searchresults.html?ss=Stockholm%2C+Sweden&efdco=1&lang=en-us&checkin=2026-02-18&checkout=2026-02-28&group_adults=2&no_rooms=1&group_children=0";
-const config = require('./config');
+
+require('dotenv').config(); // Load environment variables from .env file
+const config = require('../config'); // Load configuration settings from config.js
+
 
 // global variables for browser, page and browser context. These are initialized in the initBrowser function and used throughout the script. 
 var browser, page, browserContext;
