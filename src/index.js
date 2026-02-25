@@ -14,9 +14,19 @@ var browser, page, browserContext;
 
     await initBrowser();
 
-    await page.goto(targetUrl, { timeout: 10000, waitUntil: "networkidle2", referer: targetUrl, referrerPolicy: 'origin' });
+    try {
+        await page.goto(targetUrl, { timeout: 10000, waitUntil: "networkidle2", referer: targetUrl, referrerPolicy: 'origin' });
+    } catch (err) {
+        console.error("Failed to load the target URL.");
+        process.exit(1);
+    }
     await closePopups();
-    await page.waitForSelector('[data-testid="property-card"]');
+    try {
+        await page.waitForSelector('[data-testid="property-card"]', { timeout: 10000 }); // Wait for hotel cards to load, adjust timeout as needed
+    } catch (err) {
+        console.error("Hotel cards did not load in time.");
+        process.exit(1);
+    }   
 
     // Scroll down the page to load more hotels. The number of scrolls can be adjusted based on how many hotels you want to load. 
     for (let i = 0; i < 3; i++) {
