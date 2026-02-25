@@ -6,14 +6,14 @@ A Puppeteer-based web scraper for extracting hotel information from Booking.com.
 
 ## Features
 
-- Real-time data extraction (prices, ratings, urls)
+- Real-time data extraction 
 - Headless browser automation
 - Error handling
 - Results export to JSON/CSV
 
 ## Prerequisites
 
-- Node.js 14+
+- Node.js 18+
 - npm or yarn
 
 ## Installation
@@ -30,8 +30,8 @@ npm install
 ```
 ├── src/
 │   ├── index.js      # Main scraping logic
-│   └── config.js       # Configuration
-├── output/             # Results directory
+├── config.js         # Configuration
+├── schema.sql        # Mysql db Schema
 └── package.json
 ```
 
