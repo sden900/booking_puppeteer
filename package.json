@@ -10,6 +10,7 @@
     "license": "ISC",
     "dependencies": {
         "dotenv": "^17.3.1",
+        "mysql2": "^3.18.1",
         "proxy-chain": "^1.0.0",
         "puppeteer": "npm:rebrowser-puppeteer@^23.10.3",
         "puppeteer-core": "npm:rebrowser-puppeteer-core@^23.3.1",

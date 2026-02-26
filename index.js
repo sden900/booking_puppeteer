@@ -10,7 +10,7 @@ const targetUrl = "https://www.booking.com/searchresults.html?ss=Stockholm%2C+Sw
 
 require('dotenv').config(); // Load environment variables from .env file
 const config = require('./config'); // Load configuration settings from config.js
-
+var anonymizedProxyUrl;
 
 // global variables for browser, page and browser context. These are initialized in the initBrowser function and used throughout the script. 
 var browser, page, browserContext;
@@ -100,8 +100,8 @@ async function initBrowser() {
         // This is necessary because Puppeteer does not natively support proxies with authentication.  
         if (proxy.username && proxy.password) {
             proxyUrl = `socks5://${proxy.username}:${proxy.password}@${proxy.ip}:${proxy.port}`;
-            const anonymizedProxy = await proxyChain.anonymizeProxy(proxyUrl);
-            browserContext = await browser.createBrowserContext({ proxyServer: anonymizedProxy });
+            anonymizedProxyUrl = await proxyChain.anonymizeProxy(proxyUrl);
+            browserContext = await browser.createBrowserContext({ proxyServer: anonymizedProxyUrl });
         } else {
             proxyUrl = `socks5://${proxy.ip}:${proxy.port}`;
             browserContext = await browser.createBrowserContext({ proxyServer: proxyUrl });
