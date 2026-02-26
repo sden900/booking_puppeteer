@@ -28,8 +28,7 @@ npm install
 ## Project Structure
 
 ```
-├── src/
-│   ├── index.js      # Main scraping logic
+├── index.js            # Main scraping logic
 ├── config.js         # Configuration
 ├── schema.sql        # Mysql db Schema
 └── package.json

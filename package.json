@@ -1,12 +1,10 @@
 {
-    "name": "airbnb",
+    "name": "puppeteer-scraper",
     "version": "1.0.0",
     "description": "Booking.com scrapping application",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
-        "dev": "nodemon index.js",
-        "test": "jest"
+        "start": "node index.js"
     },
     "author": "",
     "license": "ISC",
